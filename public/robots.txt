@@ -1,0 +1,14 @@
+# Allow all search engines to index the site
+User-agent: *
+Disallow:
+
+# Allow Google to index everything
+User-agent: Googlebot
+Disallow:
+
+# Allow Bing and Yahoo to index everything
+User-agent: Bingbot
+Disallow:
+
+# Sitemap (optional but recommended)
+Sitemap: https://ibnu-fadhil.my.id/sitemap.xml
