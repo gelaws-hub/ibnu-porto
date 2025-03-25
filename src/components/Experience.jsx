@@ -1,182 +1,346 @@
-"use client"
+import { useState, useEffect, useRef } from "react"
+import { Calendar, MapPin, ChevronDown, ChevronUp, Minimize2, Maximize2, Briefcase, Users, Code } from "react-feather"
 
-import { useState } from "react"
-import { Calendar, MapPin, ChevronDown, ChevronUp } from "react-feather"
+import { categorizedExperiences } from "./data/experiences"
 
-const Experience = () => {
-  const [expandedId, setExpandedId] = useState(null)
+// Flatten all experiences for when "All" category is selected
+// Replace the existing allExperiences definition with this:
+const allExperiences = [
+  ...categorizedExperiences.work,
+  ...categorizedExperiences.organization,
+  ...categorizedExperiences.project,
+]
 
-  const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id)
-  }
+// Custom hook for scroll animations using Intersection Observer
+const useScrollAnimation = (threshold = 0.1) => {
+  const ref = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
 
-  const experiences = [
-    {
-      id: 1,
-      role: "Laboratory Teaching Assistant",
-      company: "Department of Computer Engineering, Diponegoro University",
-      location: "Semarang, ID",
-      period: "Mar 2024 – Present",
-      description: [
-        "Guided students in practical labs, focusing on microprocessor integration with computer systems.",
-        "Facilitated hands-on workshops in automation systems and control theory implementation using Simulink and Matlab.",
-        "Taught students 3D content creation and game development.",
-      ],
-      tags: ["Teaching", "Microprocessor", "Control Systems", "Multimedia"],
-    },
-    {
-      id: 2,
-      role: "Cloud Computing Student & Backend Developer",
-      company: "Bangkit Academy 2024 By Google, GoTo, Tokopedia, Traveloka",
-      location: "Bandung, ID",
-      period: "Sep 2024 – Dec 2024",
-      description: [
-        "Engineered backend infrastructure for FaceFit app using Express.js and Prisma ORM, achieving 20% faster server response time.",
-        "Deployed and managed application on Google Cloud Platform utilizing Cloud SQL, Cloud Storage, and App Engine.",
-        "Coordinated with Machine Learning and Mobile Development teams to integrate facial analysis features and API implementations.",
-        "Recognized as Top 1,000 Most Active Students and Top 5 Best Presenters in English ILT (Instructor Led Training) Activity Class.",
-        "Graduated with distinction Top 10% Students in Cloud Computing with 96.20/100 average score.",
-      ],
-      tags: ["Cloud Computing", "Backend Development", "Express.js", "GCP", "Prisma ORM"],
-    },
-    {
-      id: 3,
-      role: "Full Stack Developer – Final Project",
-      company: "PC Retail Store MJ-Teknologi",
-      location: "Semarang, ID",
-      period: "Aug 2024 – Jan 2025",
-      description: [
-        "Developed and deployed a comprehensive e-commerce platform using React.js, Express.js, and MySQL.",
-        "Designed and optimized database architecture, improving inventory and transaction efficiency by roughly 25%.",
-        "Created RESTful APIs to facilitate seamless communication between frontend and backend systems.",
-      ],
-      tags: ["Full Stack", "React.js", "Express.js", "MySQL", "RESTful API"],
-    },
-    {
-      id: 4,
-      role: "Project Manager and UI/UX Designer Internship",
-      company: "Government of Communication Department and Informatics",
-      location: "Semarang, ID",
-      period: "Sep 2023 – Nov 2023",
-      description: [
-        "Developed a secure and scalable web-based system for intern attendance system, replacing the previous WhatsApp based method.",
-        "Led a team of 5 developer interns to build the application using Express.js and React.js.",
-        "Delivered a scalable application using React.js and Express.js, enhancing process efficiency by 30%.",
-      ],
-      tags: ["Project Management", "UI/UX Design", "React.js", "Express.js"],
-    },
-    {
-      id: 5,
-      role: "Multimedia Mentor",
-      company: "Computer Engineering Research Club",
-      location: "Semarang, ID",
-      period: "Apr 2023 – Oct 2023",
-      description: [
-        "Introduced club members to the world of 3D, exploring its possibilities and applications.",
-        "Led hands-on sessions in 3D modeling, texturing, and animation using Blender 3D.",
-      ],
-      tags: ["3D Modeling", "Blender", "Mentoring"],
-    },
-    {
-      id: 6,
-      role: "Freelance 3D Product Designer",
-      company: "Fiverr Freelance Platform",
-      location: "Remote",
-      period: "Sep 2020 – Sep 2024",
-      description: [
-        "Delivered 100+ 3D product design projects for international clients with 100% on-time delivery rate.",
-        "Achieved 80+ positive client satisfaction reviews, highlighting exceptional service and design quality.",
-      ],
-      tags: ["3D Design", "Freelancing", "Product Design"],
-    },
-  ]
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          // Once visible, no need to observe anymore
+          if (ref.current) observer.unobserve(ref.current)
+        }
+      },
+      {
+        threshold,
+      },
+    )
+
+    const currentRef = ref.current
+    if (currentRef) {
+      observer.observe(currentRef)
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef)
+      }
+    }
+  }, [threshold])
+
+  return { ref, isVisible }
+}
+
+// Section Header Component
+const SectionHeader = () => {
+  const { ref, isVisible } = useScrollAnimation()
 
   return (
-    <section id="experience" className="py-20">
-      <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          <span className="relative inline-block">
-            <span className="absolute inset-x-0 bottom-0 h-3 bg-teal-200 dark:bg-teal-800 transform -skew-x-12"></span>
-            <span className="relative">Work Experience</span>
-          </span>
-        </h2>
-        <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-          My professional journey and the valuable experiences I've gained along the way.
-        </p>
+    <div
+      ref={ref}
+      className={`text-center mb-12 transition-all duration-400 transform ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <span className="relative inline-block">
+          <span className="absolute inset-x-0 bottom-0 h-3 bg-teal-200 dark:bg-teal-800 transform -skew-x-12"></span>
+          <span className="relative">Experience</span>
+        </span>
+      </h2>
+      <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        My professional journey and the valuable experiences I've gained along the way.
+      </p>
+    </div>
+  )
+}
+
+// Category Tabs Component
+const CategoryTabs = ({ categories, activeCategory, setActiveCategory }) => {
+  const { ref, isVisible } = useScrollAnimation(0.2)
+
+  return (
+    <div
+      ref={ref}
+      className={`flex flex-wrap justify-center gap-2 mb-6 transition-all duration-300 delay-100 transform ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
+      {categories.map((category) => (
+        <button
+          key={category.id}
+          onClick={() => setActiveCategory(category.id)}
+          className={`flex items-center px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200 ${
+            activeCategory === category.id
+              ? "bg-teal-100 dark:bg-teal-900/50 text-teal-800 dark:text-teal-300 shadow-sm"
+              : "bg-white/70 dark:bg-gray-800/70 backdrop-blur-sm text-gray-700 dark:text-gray-300 hover:bg-gray-200/70 dark:hover:bg-gray-700/70"
+          }`}
+        >
+          <span className="mr-2">{category.icon}</span>
+          {category.name}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+// Experience Controls Component
+const ExperienceControls = ({ isAllExpanded, toggleAll }) => {
+  const { ref, isVisible } = useScrollAnimation(0.2)
+
+  return (
+    <div
+      ref={ref}
+      className={`flex justify-end mb-2 transition-all duration-400 delay-200 transform ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
+      <div onClick={toggleAll} className="px-4 rounded-lg flex gap-4 items-center cursor-pointer">
+        <span className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-all duration-300 opacity-100">
+          {isAllExpanded ? "Collapse All" : "Expand All"}{" "}
+        </span>
+
+        <button
+          onClick={toggleAll}
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+            isAllExpanded
+              ? "bg-white/50 dark:bg-gray-700/50 text-teal-600 dark:text-teal-400 shadow-sm"
+              : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          }`}
+        >
+          {isAllExpanded ? <Maximize2 size={18} /> : <Minimize2 size={18} />}
+        </button>
       </div>
+    </div>
+  )
+}
 
-      <div className="max-w-4xl mx-auto">
-        <div className="relative">
-          <div className="absolute left-4 md:left-1/2 h-full w-0.5 bg-gray-200 dark:bg-gray-700 transform md:-translate-x-1/2"></div>
+// Update the ExperienceCard component to handle multiple roles
+// Replace the entire ExperienceCard component with this:
+// Experience Card Component
+const ExperienceCard = ({ company, index, toggleExpand, expandedIds }) => {
+  const { ref, isVisible } = useScrollAnimation(0.1)
+  const isEven = index % 2 === 0
+  const hasMultipleRoles = company.roles.length > 1
 
-          {experiences.map((exp, index) => (
-            <div
-              key={exp.id}
-              className={`relative mb-8 ${index % 2 === 0 ? "md:pr-8 md:text-right md:ml-auto md:mr-1/2" : "md:pl-8 md:ml-1/2"}`}
+  return (
+    <div
+      ref={ref}
+      className={`relative mb-8 ${"md:pl-8 md:ml-1/2"} transition-all duration-400 transform ${
+        isVisible ? "opacity-100 translate-y-0" : `opacity-0 ${isEven ? "translate-x-10" : "-translate-x-10"}`
+      }`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+    >
+      <div className="hidden md:block absolute top-6 -left-3 md:left-auto md:right-auto md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-white dark:border-gray-900 bg-teal-500"></div>
+
+      <div className="ml-8 md:ml-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-lg shadow-md border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg transition-all duration-300">
+        {/* Company Header */}
+        <div className="mb-4">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+            {company.company}
+            {/* Category Badge */}
+            <span
+              className={`ml-4 px-2 py-1 text-xs font-medium rounded-full ${
+                company.category === "work"
+                  ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
+                  : company.category === "organization"
+                    ? "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
+                    : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+              }`}
             >
-              <div className="hidden md:block absolute top-6 -left-3 md:left-auto md:right-auto md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-white dark:border-gray-900 bg-teal-500"></div>
+              {company.category.charAt(0).toUpperCase() + company.category.slice(1)}
+            </span>
+          </h3>
 
-              <div className="ml-8 md:ml-0 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-4">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">{exp.role}</h3>
-                  <button
-                    onClick={() => toggleExpand(exp.id)}
-                    className="mt-2 md:mt-0 text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 flex items-center self-end md:self-auto"
-                  >
-                    {expandedId === exp.id ? (
-                      <>
-                        <span className="text-sm mr-1">Less</span>
-                        <ChevronUp size={16} />
-                      </>
-                    ) : (
-                      <>
-                        <span className="text-sm mr-1">More</span>
-                        <ChevronDown size={16} />
-                      </>
-                    )}
-                  </button>
-                </div>
+          <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-400 mb-2">
+            <div className="flex items-center mb-2">
+              <MapPin size={16} className="mr-1" />
+              <span className="text-sm">{company.location}</span>
+            </div>
+          </div>
+        </div>
 
-                <h4 className="text-lg font-medium text-gray-800 dark:text-gray-200 mb-2">{exp.company}</h4>
+        {/* Roles Section */}
+        <div className="space-y-6">
+          {company.roles.map((role, roleIndex) => (
+            <div
+              key={role.id}
+              className={`${
+                hasMultipleRoles && roleIndex > 0 ? "pt-4 border-t border-gray-200 dark:border-gray-700" : ""
+              }`}
+            >
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                <h4 className="text-lg font-medium text-gray-800 dark:text-gray-200">{role.role}</h4>
 
-                <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-400 mb-4">
-                  <div className="flex items-center mr-4 mb-2">
-                    <Calendar size={16} className="mr-1" />
-                    <span className="text-sm">{exp.period}</span>
-                  </div>
-                  <div className="flex items-center mb-2">
-                    <MapPin size={16} className="mr-1" />
-                    <span className="text-sm">{exp.location}</span>
-                  </div>
-                </div>
-
-                {expandedId === exp.id && (
-                  <div className="mt-4">
-                    <ul className="space-y-2">
-                      {exp.description.map((item, i) => (
-                        <li key={i} className="flex">
-                          <span className="mr-2 text-teal-500 dark:text-teal-400">•</span>
-                          <span className="text-gray-600 dark:text-gray-400">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      {exp.tags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                <button
+                  onClick={() => toggleExpand(role.id)}
+                  className="mt-2 md:mt-0 text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 flex items-center self-end md:self-auto"
+                >
+                  {expandedIds.includes(role.id) ? (
+                    <>
+                      <span className="text-sm mr-1">Less</span>
+                      <ChevronUp size={16} />
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-sm mr-1">More</span>
+                      <ChevronDown size={16} />
+                    </>
+                  )}
+                </button>
               </div>
+
+              <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-400 mb-2">
+                <div className="flex items-center mr-4 mb-2">
+                  <Calendar size={16} className="mr-1" />
+                  <span className="text-sm">{role.period}</span>
+                </div>
+              </div>
+
+              {expandedIds.includes(role.id) && (
+                <div className="mt-4 animate-fadeIn">
+                  <ul className="space-y-2">
+                    {role.description.map((item, i) => (
+                      <li key={i} className="flex">
+                        <span className="mr-2 text-teal-500 dark:text-teal-400">•</span>
+                        <span className="text-gray-600 dark:text-gray-400">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {role.tags.map((tag, i) => (
+                      <span
+                        key={i}
+                        className="px-2 py-1 text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
+      </div>
+    </div>
+  )
+}
+
+// Empty State Component
+const EmptyState = () => {
+  const { ref, isVisible } = useScrollAnimation(0.2)
+
+  return (
+    <div
+      ref={ref}
+      className={`text-center py-12 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg transition-all duration-400 transform ${
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      }`}
+    >
+      <p className="text-gray-600 dark:text-gray-400">No experiences found in this category.</p>
+    </div>
+  )
+}
+
+// Update the ExperienceTimeline component to pass company objects instead of individual experiences
+// Replace the ExperienceTimeline component with this:
+// Timeline Component
+const ExperienceTimeline = ({ companies, toggleExpand, expandedIds }) => {
+  const { ref, isVisible } = useScrollAnimation(0.1)
+
+  return (
+    <div
+      ref={ref}
+      className={`relative transition-all duration-400 delay-300 transform ${isVisible ? "opacity-100" : "opacity-0"}`}
+    >
+      <div className="absolute left-4 md:left-1/2 h-full w-0.5 bg-gray-200 dark:bg-gray-700 transform md:-translate-x-1/2"></div>
+
+      {companies.length > 0 ? (
+        companies.map((company, index) => (
+          <ExperienceCard
+            key={company.companyId}
+            company={company}
+            index={index}
+            toggleExpand={toggleExpand}
+            expandedIds={expandedIds}
+          />
+        ))
+      ) : (
+        <EmptyState />
+      )}
+    </div>
+  )
+}
+
+// Update the main Experience component to work with the new data structure
+// Replace the Experience component with this:
+// Main Experience Component
+const Experience = () => {
+  const [activeCategory, setActiveCategory] = useState("all")
+  const [expandedIds, setExpandedIds] = useState([])
+
+  // Initialize expanded IDs with all role IDs
+  useEffect(() => {
+    const allRoleIds = allExperiences.flatMap((company) => company.roles.map((role) => role.id))
+    setExpandedIds(allRoleIds)
+  }, [])
+
+  // Get experiences based on active category
+  const companies = activeCategory === "all" ? allExperiences : categorizedExperiences[activeCategory]
+
+  // Get all role IDs from the current companies
+  const allRoleIds = companies.flatMap((company) => company.roles.map((role) => role.id))
+
+  const toggleExpand = (id) => {
+    setExpandedIds(expandedIds.includes(id) ? expandedIds.filter((item) => item !== id) : [...expandedIds, id])
+  }
+
+  const toggleAll = () => {
+    setExpandedIds(expandedIds.length === allRoleIds.length ? [] : allRoleIds)
+  }
+
+  const isAllExpanded = expandedIds.length === allRoleIds.length
+
+  const categories = [
+    { id: "all", name: "All Experiences", icon: <Calendar size={18} /> },
+    { id: "work", name: "Work", icon: <Briefcase size={18} /> },
+    { id: "organization", name: "Organization", icon: <Users size={18} /> },
+    { id: "project", name: "Project", icon: <Code size={18} /> },
+  ]
+
+  return (
+    <section id="experience" className="py-20 relative">
+      {/* Decorative elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-blue-100/30 dark:bg-blue-900/20 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-100/30 dark:bg-teal-900/20 rounded-full blur-3xl -z-10"></div>
+
+      <SectionHeader />
+
+      {/* Category Tabs and Controls */}
+      <div className="max-w-4xl mx-auto mb-8">
+        <CategoryTabs categories={categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+
+        <ExperienceControls isAllExpanded={isAllExpanded} toggleAll={toggleAll} />
+      </div>
+
+      <div className="max-w-4xl mx-auto">
+        <ExperienceTimeline companies={companies} toggleExpand={toggleExpand} expandedIds={expandedIds} />
       </div>
     </section>
   )

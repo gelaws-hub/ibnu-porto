@@ -5,7 +5,6 @@ const myEmail = "ibnu.fadhil12@gmail.com"
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: "",
     email: "",
     subject: "",
     message: "",
@@ -172,22 +171,6 @@ const Contact = () => {
 
               <form onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-                      Your Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 dark:focus:ring-teal-400 dark:focus:border-teal-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
-                      placeholder="John Doe"
-                    />
-                  </div>
-
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                       Your Email

@@ -1,22 +1,52 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { GitHub, Linkedin, Mail, MapPin, ExternalLink } from "react-feather"
+import { HugeiconsIcon } from "@hugeicons/react";
+import { useState, useEffect } from "react";
+import {
+  GitHub,
+  Linkedin,
+  Mail,
+  MapPin,
+  ExternalLink,
+  Instagram,
+} from "react-feather";
+
+const FiverrIcon = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    width={24}
+    height={24}
+    color={"#ffffff"}
+    fill={"none"}
+    className={`${props.className}`}
+    {...props}
+  >
+    <path
+      d="M15.3517 3C15.3517 2.5286 15.3517 2.29289 15.2052 2.14645C15.0588 2 14.8231 2 14.3517 2H11.6173C8.89563 2 6.52177 4.50923 6.68066 8.5H5C4.5286 8.5 4.29289 8.5 4.14645 8.64645C4 8.79289 4 9.0286 4 9.5V11C4 11.4714 4 11.7071 4.14645 11.8536C4.29289 12 4.5286 12 5 12H7V21C7 21.4714 7 21.7071 7.14645 21.8536C7.29289 22 7.5286 22 8 22H10C10.4714 22 10.7071 22 10.8536 21.8536C11 21.7071 11 21.4714 11 21V12H15.5306V21C15.5306 21.4714 15.5306 21.7071 15.677 21.8536C15.8235 22 16.0592 22 16.5306 22H19C19.4714 22 19.7071 22 19.8536 21.8536C20 21.7071 20 21.4714 20 21V10.5C20 9.55719 20 9.08579 19.7071 8.79289C19.4142 8.5 18.9428 8.5 18 8.5H11V7.22923C11 6.5 11.5 5.5 12.797 5.5H14.3517C14.8231 5.5 15.0588 5.5 15.2052 5.35355C15.3517 5.20711 15.3517 4.9714 15.3517 4.5V3Z"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
 const Hero = () => {
-  const [typedText, setTypedText] = useState("")
-  const fullText = "Computer Engineering Student | Cloud Developer | Full Stack Developer"
-  const typingSpeed = 50
+  const [typedText, setTypedText] = useState("");
+  const fullText =
+    "Computer Engineering Student | Cloud Engineer | Full Stack Developer";
+  const typingSpeed = 50;
 
   useEffect(() => {
     if (typedText.length < fullText.length) {
       const timeout = setTimeout(() => {
-        setTypedText(fullText.slice(0, typedText.length + 1))
-      }, typingSpeed)
+        setTypedText(fullText.slice(0, typedText.length + 1));
+      }, typingSpeed);
 
-      return () => clearTimeout(timeout)
+      return () => clearTimeout(timeout);
     }
-  }, [typedText])
+  }, [typedText]);
 
   return (
     <section className="min-h-screen flex flex-col justify-center pt-16">
@@ -37,8 +67,9 @@ const Hero = () => {
             </p>
           </div>
           <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg">
-            A final-year Computer Engineering student passionate about technological advancements and eager to gain new
-            experiences and skills from experts worldwide.
+            A final-year Computer Engineering student passionate about
+            technological advancements and eager to gain new experiences and
+            skills from experts worldwide.
           </p>
 
           <div className="flex flex-wrap gap-4 mb-8">
@@ -83,6 +114,24 @@ const Hero = () => {
                 <Linkedin size={20} />
               </a>
               <a
+                href="https://www.instagram.com/ibnu_fadhil22"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+                aria-label="Instagram"
+              >
+                <Instagram size={20} />
+              </a>
+              <a
+                href="https://fiverr.com/vid_designer"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+                aria-label="Instagram"
+              >
+                <FiverrIcon className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-300 pb-[4px]" size={20} />
+              </a>
+              <a
                 href="https://ibnu-fadhil.my.id"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -97,8 +146,8 @@ const Hero = () => {
 
         <div className="order-1 md:order-2 flex justify-center">
           <div className="relative">
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-teal-400 to-blue-500 dark:from-teal-500 dark:to-blue-600 absolute top-4 left-4 animate-blob animation-delay-4000"></div>
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-lime-400 to-emerald-500-500 dark:from-green-500 dark:to-green-600 absolute top-0 left-0 animate-blob animation-delay-2000"></div>
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-teal-400/50 to-blue-500/50 dark:from-teal-500/50 dark:to-blue-600/50 absolute top-4 left-4 animate-blob animation-delay-4000"></div>
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-slate-100/50 to-emerald-400/30 dark:from-green-100/50 dark:to-green-100/50 absolute top-0 left-0 animate-blob animation-delay-2000"></div>
             <img
               src="/myphoto.jpg"
               alt="Muhamad Ibnu Fadhil"
@@ -126,8 +175,7 @@ const Hero = () => {
         </a>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
-
+export default Hero;
