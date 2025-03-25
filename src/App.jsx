@@ -9,6 +9,8 @@ import Certifications from "./components/certifications"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 import ThemeToggle from "./components/ThemeToggle"
+import AnimatedBackground from "./components/AnimatedBackground"
+import FloatingShapes from "./components/FloatingShapes"
 
 function App() {
   const [theme, setTheme] = useState(() => {
@@ -32,19 +34,26 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
-      <main className="container mx-auto px-4 py-8">
-        <Hero />
-        <Projects />
-        <Experience />
-        <Education />
-        <Skills />
-        <Certifications />
-        <Contact />
-      </main>
-      <Footer />
-      <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors duration-300 relative">
+      {/* Fun background elements */}
+      <FloatingShapes theme={theme} />
+      <AnimatedBackground theme={theme} />
+
+      {/* Content */}
+      <div className="relative z-10">
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
+        <main className="container mx-auto px-4 py-8">
+          <Hero />
+          <Projects />
+          <Experience />
+          <Education />
+          <Skills />
+          <Certifications />
+          <Contact />
+        </main>
+        <Footer />
+        <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+      </div>
     </div>
   )
 }
