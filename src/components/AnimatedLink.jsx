@@ -14,6 +14,7 @@ const AnimatedLink = React.forwardRef(
       underlineColor = "#00c39a", // Default teal color similar to image
       animationDuration = 500,
       alwaysShowUnderline = false,
+      group = "",
       ...props
     },
     ref,
@@ -34,7 +35,7 @@ const AnimatedLink = React.forwardRef(
           // Underline styling
           "after:absolute after:bottom-0 after:left-0 after:z-0 after:h-[var(--underline-height)] after:w-0 after:bg-[var(--underline-color,currentColor)] after:transition-all after:duration-[var(--animation-duration)] after:ease-in-out after:content-['']",
           // Show full underline on hover
-          "hover:after:w-full",
+          `${group ? "group-hover:after:w-full" : "hover:after:w-full"}`,
           // If alwaysShowUnderline is true, show the underline at full width by default
           alwaysShowUnderline ? "after:w-full" : "",
           className,
