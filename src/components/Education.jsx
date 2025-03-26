@@ -24,6 +24,7 @@ const Education = () => {
                 <div className="w-24 h-24 rounded-lg flex items-center justify-center">
                   <img
                     src="/undip.png"
+                    alt="Universitas Diponegoro"
                     className="text-4xl font-bold text-teal-600 dark:text-teal-400"
                   />
                 </div>
@@ -34,7 +35,7 @@ const Education = () => {
                   href="https://undip.ac.id"
                   className="text-2xl font-bold text-gray-900 dark:text-white mb-2"
                 >
-                  Diponegoro University
+                  Universitas Diponegoro
                 </AnimatedLink>
                 <h4 className="text-lg font-medium text-teal-600 dark:text-teal-400 mb-4">
                   <AnimatedLink href="https://tekkom.ft.undip.ac.id">

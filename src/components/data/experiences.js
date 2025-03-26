@@ -9,7 +9,7 @@ export const categorizedExperiences = {
         {
           id: 'coor-tko',
           role: "Coordinator Practicum Assistant for Control and Automation Engineering",
-          period: "Aug 2024 – Mar 2024",
+          period: "Aug 2024 – Mar 2025",
           description: [
             "Coordinated and supervised 8 practicum assistants in delivering high-quality learning experiences.",
             "Led practicum on automation systems and control theory using Simulink and MATLAB.",
@@ -33,6 +33,26 @@ export const categorizedExperiences = {
       category: "work",
     },
     {
+      companyId: "mj-teknologi",
+      company: "PC Retail Store MJ-Teknologi",
+      companyUrl: "https://www.instagram.com/mjteknologi_semarang",
+      location: "Semarang, ID",
+      roles: [
+        {
+          id: 'mj-teknologi',
+          role: "Full Stack Developer – Final Project",
+          period: "Aug 2024 – Jan 2025",
+          description: [
+            "Developed and deployed a comprehensive e-commerce platform using React.js, Express.js, and MySQL.",
+            "Designed and optimized database architecture, improving inventory and transaction efficiency by roughly 25%.",
+            "Created RESTful APIs to facilitate seamless communication between frontend and backend systems.",
+          ],
+          tags: ["Full Stack", "React.js", "Express.js", "MySQL", "RESTful API"],
+        },
+      ],
+      category: "work",
+    },
+    {
       companyId: "bangkit-academy",
       company: "Bangkit Academy 2024 By Google, GoTo, Tokopedia, Traveloka",
       companyUrl: "https://www.linkedin.com/company/bangkit-academy",
@@ -50,26 +70,6 @@ export const categorizedExperiences = {
             "Graduated with distinction Top 10% Students in Cloud Computing with 96.20/100 average score.",
           ],
           tags: ["Cloud Computing", "Backend Development", "Express.js", "GCP", "Prisma ORM"],
-        },
-      ],
-      category: "work",
-    },
-    {
-      companyId: "mj-teknologi",
-      company: "PC Retail Store MJ-Teknologi",
-      companyUrl: "https://www.instagram.com/mjteknologi_semarang",
-      location: "Semarang, ID",
-      roles: [
-        {
-          id: 'mj-teknologi',
-          role: "Full Stack Developer – Final Project",
-          period: "Aug 2024 – Jan 2025",
-          description: [
-            "Developed and deployed a comprehensive e-commerce platform using React.js, Express.js, and MySQL.",
-            "Designed and optimized database architecture, improving inventory and transaction efficiency by roughly 25%.",
-            "Created RESTful APIs to facilitate seamless communication between frontend and backend systems.",
-          ],
-          tags: ["Full Stack", "React.js", "Express.js", "MySQL", "RESTful API"],
         },
       ],
       category: "work",

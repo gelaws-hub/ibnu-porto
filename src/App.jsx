@@ -19,6 +19,7 @@ function App() {
     if (typeof window !== "undefined") {
       return localStorage.getItem("theme") || defaultTheme
     }
+    return defaultTheme
   })
 
   useEffect(() => {
