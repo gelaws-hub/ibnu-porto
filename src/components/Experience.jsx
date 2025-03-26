@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
 import { Calendar, MapPin, ChevronDown, ChevronUp, Minimize2, Maximize2, Briefcase, Users, Code } from "react-feather"
 
 import { categorizedExperiences } from "./data/experiences"
+import { AnimatedLink } from "./AnimatedLink"
 
 // Flatten all experiences for when "All" category is selected
 // Replace the existing allExperiences definition with this:
@@ -11,50 +12,12 @@ const allExperiences = [
   ...categorizedExperiences.project,
 ]
 
-// Custom hook for scroll animations using Intersection Observer
-const useScrollAnimation = (threshold = 0.1) => {
-  const ref = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          // Once visible, no need to observe anymore
-          if (ref.current) observer.unobserve(ref.current)
-        }
-      },
-      {
-        threshold,
-      },
-    )
-
-    const currentRef = ref.current
-    if (currentRef) {
-      observer.observe(currentRef)
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef)
-      }
-    }
-  }, [threshold])
-
-  return { ref, isVisible }
-}
-
 // Section Header Component
 const SectionHeader = () => {
-  const { ref, isVisible } = useScrollAnimation()
 
   return (
     <div
-      ref={ref}
-      className={`text-center mb-12 transition-all duration-400 transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`text-center mb-12 transition-all duration-400 transform`}
     >
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
         <span className="relative inline-block">
@@ -71,14 +34,10 @@ const SectionHeader = () => {
 
 // Category Tabs Component
 const CategoryTabs = ({ categories, activeCategory, setActiveCategory }) => {
-  const { ref, isVisible } = useScrollAnimation(0.2)
 
   return (
     <div
-      ref={ref}
-      className={`flex flex-wrap justify-center gap-2 mb-6 transition-all duration-300 delay-100 transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`flex flex-wrap justify-center gap-2 mb-6 transition-all duration-300`}
     >
       {categories.map((category) => (
         <button
@@ -100,14 +59,10 @@ const CategoryTabs = ({ categories, activeCategory, setActiveCategory }) => {
 
 // Experience Controls Component
 const ExperienceControls = ({ isAllExpanded, toggleAll }) => {
-  const { ref, isVisible } = useScrollAnimation(0.2)
 
   return (
     <div
-      ref={ref}
-      className={`flex justify-end mb-2 transition-all duration-400 delay-200 transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`flex justify-end mb-2 transition-all duration-400 delay-200 transform`}
     >
       <div onClick={toggleAll} className="px-4 rounded-lg flex gap-4 items-center cursor-pointer">
         <span className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-all duration-300 opacity-100">
@@ -129,28 +84,21 @@ const ExperienceControls = ({ isAllExpanded, toggleAll }) => {
   )
 }
 
-// Update the ExperienceCard component to handle multiple roles
-// Replace the entire ExperienceCard component with this:
-// Experience Card Component
-const ExperienceCard = ({ company, index, toggleExpand, expandedIds }) => {
-  const { ref, isVisible } = useScrollAnimation(0.1)
-  const isEven = index % 2 === 0
+const ExperienceCard = ({ company, toggleExpand, expandedIds, index }) => {
   const hasMultipleRoles = company.roles.length > 1
+
+  const isEven = index % 2 === 0;
 
   return (
     <div
-      ref={ref}
-      className={`relative mb-8 ${"md:pl-8 md:ml-1/2"} transition-all duration-400 transform ${
-        isVisible ? "opacity-100 translate-y-0" : `opacity-0 ${isEven ? "translate-x-10" : "-translate-x-10"}`
-      }`}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      className={`relative mb-8 ${isEven ? "md:mr-8 md:ml-auto" : "md:pl-8 md:ml-1/2"} transition-all duration-400 transform ease-in group`}
     >
       <div className="hidden md:block absolute top-6 -left-3 md:left-auto md:right-auto md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-white dark:border-gray-900 bg-teal-500"></div>
 
       <div className="ml-8 md:ml-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-lg shadow-md border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg transition-all duration-300">
         {/* Company Header */}
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+          <AnimatedLink href={company.companyUrl} target="_blank" group="group" className="text-xl font-bold text-gray-900 dark:text-white mb-2">
             {company.company}
             {/* Category Badge */}
             <span
@@ -164,7 +112,7 @@ const ExperienceCard = ({ company, index, toggleExpand, expandedIds }) => {
             >
               {company.category.charAt(0).toUpperCase() + company.category.slice(1)}
             </span>
-          </h3>
+          </AnimatedLink>
 
           <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-400 mb-2">
             <div className="flex items-center mb-2">
@@ -244,30 +192,21 @@ const ExperienceCard = ({ company, index, toggleExpand, expandedIds }) => {
 
 // Empty State Component
 const EmptyState = () => {
-  const { ref, isVisible } = useScrollAnimation(0.2)
 
   return (
     <div
-      ref={ref}
-      className={`text-center py-12 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg transition-all duration-400 transform ${
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      }`}
+      className={`text-center py-12 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg transition-all duration-400 transform`}
     >
       <p className="text-gray-600 dark:text-gray-400">No experiences found in this category.</p>
     </div>
   )
 }
 
-// Update the ExperienceTimeline component to pass company objects instead of individual experiences
-// Replace the ExperienceTimeline component with this:
-// Timeline Component
 const ExperienceTimeline = ({ companies, toggleExpand, expandedIds }) => {
-  const { ref, isVisible } = useScrollAnimation(0.1)
 
   return (
     <div
-      ref={ref}
-      className={`relative transition-all duration-400 delay-300 transform ${isVisible ? "opacity-100" : "opacity-0"}`}
+      className={`relative transition-all duration-400 delay-300 transform`}
     >
       <div className="absolute left-4 md:left-1/2 h-full w-0.5 bg-gray-200 dark:bg-gray-700 transform md:-translate-x-1/2"></div>
 
@@ -288,9 +227,6 @@ const ExperienceTimeline = ({ companies, toggleExpand, expandedIds }) => {
   )
 }
 
-// Update the main Experience component to work with the new data structure
-// Replace the Experience component with this:
-// Main Experience Component
 const Experience = () => {
   const [activeCategory, setActiveCategory] = useState("all")
   const [expandedIds, setExpandedIds] = useState([])

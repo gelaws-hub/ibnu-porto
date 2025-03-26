@@ -3,13 +3,15 @@ export const categorizedExperiences = {
     {
       companyId: "diponegoro-university",
       company: "Department of Computer Engineering, Diponegoro University",
+      companyUrl: "https://www.undip.ac.id",
       location: "Semarang, ID",
       roles: [
         {
-          id: 111,
+          id: 'coor-tko',
           role: "Coordinator Practicum Assistant for Control and Automation Engineering",
           period: "Aug 2024 – Mar 2024",
           description: [
+            "Coordinated and supervised 8 practicum assistants in delivering high-quality learning experiences.",
             "Led practicum on automation systems and control theory using Simulink and MATLAB.",
             "Taught 145+ students on IoT integration with Arduino Nano 33 IoT for real-time control.",
             "Conducted labs with robotic devices, including a controlled rover, drawing robot, and self-balancing bike.",
@@ -17,7 +19,7 @@ export const categorizedExperiences = {
           tags: ["Teaching", "Control Systems", "Automation", "IoT", "Simulink", "MATLAB"],
         },
         {
-          id: 112,
+          id: 'tma',
           role: "Practicum Assistant for Micropocessor Engineering and Interfacing",
           period: "Mar 2024 – Jul 2024",
           description: [
@@ -33,10 +35,11 @@ export const categorizedExperiences = {
     {
       companyId: "bangkit-academy",
       company: "Bangkit Academy 2024 By Google, GoTo, Tokopedia, Traveloka",
+      companyUrl: "https://www.linkedin.com/company/bangkit-academy",
       location: "Bandung, ID",
       roles: [
         {
-          id: 2,
+          id: 'bangkit-cc',
           role: "Cloud Computing Student & Backend Developer",
           period: "Sep 2024 – Dec 2024",
           description: [
@@ -54,10 +57,11 @@ export const categorizedExperiences = {
     {
       companyId: "mj-teknologi",
       company: "PC Retail Store MJ-Teknologi",
+      companyUrl: "https://www.instagram.com/mjteknologi_semarang",
       location: "Semarang, ID",
       roles: [
         {
-          id: 3,
+          id: 'mj-teknologi',
           role: "Full Stack Developer – Final Project",
           period: "Aug 2024 – Jan 2025",
           description: [
@@ -74,9 +78,10 @@ export const categorizedExperiences = {
       companyId: "fiverr",
       company: "Fiverr Freelance Platform",
       location: "Remote",
+      companyUrl: "https://www.fiverr.com/vid_designer",
       roles: [
         {
-          id: 6,
+          id: 'fiverr-3d',
           role: "Freelance 3D Product Designer",
           period: "Sep 2020 – Sep 2024",
           description: [
@@ -94,12 +99,14 @@ export const categorizedExperiences = {
       companyId: "computer-engineering-research-club",
       company: "Computer Engineering Research Club",
       location: "Semarang, ID",
+      companyUrl: "https://www.linkedin.com/company/cerc-undip",
       roles: [
         {
-          id: 7,
+          id: 'cerc-mentor',
           role: "Multimedia Mentor",
           period: "Apr 2023 – Oct 2023",
           description: [
+            "Guest Speaker at School of Research 2023 event, presenting on 3D modeling and animation.",
             "Introduced club members to the world of 3D, exploring its possibilities and applications.",
             "Led hands-on sessions in 3D modeling, texturing, and animation using Blender 3D.",
           ],
@@ -112,9 +119,10 @@ export const categorizedExperiences = {
       companyId: "computer-engineering-student-association",
       company: "Computer Engineering Student Association",
       location: "Semarang, ID",
+      companyUrl: "https://www.instagram.com/himaskomundip",
       roles: [
         {
-          id: 8,
+          id: 'himaskom-research',
           role: "Research Staff",
           period: "Sep 2022 - Dec 2023",
           description: [
@@ -131,9 +139,10 @@ export const categorizedExperiences = {
       companyId: "computer-engineering-al-muharrik",
       company: "Computer Engineering Islamic Organization (Al-Muharrik)",
       location: "Semarang, ID",
+      companyUrl: "https://www.instagram.com/almuharrik_siskom",
       roles: [
         {
-          id: 8,
+          id: 'almuharrik-syiar-head',
           role: "Head of Syiar division",
           period: "Aug 2023 - Mar 2024",
           description: [
@@ -144,7 +153,7 @@ export const categorizedExperiences = {
           tags: ["Research", "Event Management", "Student Organization"],
         },
         {
-          id: 81,
+          id: 'almuharrik-syiar-member',
           role: "Member of Syiar division",
           period: "Aug 2023 - Mar 2024",
           description: [
@@ -160,9 +169,10 @@ export const categorizedExperiences = {
       companyId: "islamic-middle-school",
       company: "Islamic Middle School of Pangeran Diponegoro",
       location: "Semarang, ID",
+      companyUrl: "https://www.instagram.com/smptq_pangerandiponegoro",
       roles: [
         {
-          id: 9,
+          id: 'smptq-teacher',
           role: "Community Service Participant",
           period: "Feb 2024",
           description: [
@@ -181,9 +191,10 @@ export const categorizedExperiences = {
       companyId: "national-student-exhibition",
       company: "National Student Exhibition Information and Technology",
       location: "Malang, ID",
+      companyUrl: "https://gemastik.kemdikbud.go.id/",
       roles: [
         {
-          id: 10,
+          id: 'gemastik-game',
           role: "Game Developer",
           period: "Aug 2022 – Nov 2022",
           description: [
@@ -197,12 +208,13 @@ export const categorizedExperiences = {
       category: "project",
     },
     {
-      companyId: "government-cominfo",
+      companyId: "government-diskominfo",
       company: "Government of Communication Department and Informatics",
       location: "Semarang, ID",
+      companyUrl: "https://diskominfo.semarangkota.go.id",
       roles: [
         {
-          id: 4,
+          id: 'diskominfo-intern',
           role: "Project Manager and UI/UX Designer Internship",
           period: "Sep 2023 – Nov 2023",
           description: [
@@ -219,9 +231,10 @@ export const categorizedExperiences = {
       companyId: "personal-portfolio",
       company: "Personal Portfolio Website",
       location: "Remote",
+      companyUrl: "https://ibnu-fadhil.my.id",
       roles: [
         {
-          id: 11,
+          id: 'portfolio-website',
           role: "Fullstack Developer",
           period: "Jan 2024 – Feb 2024",
           description: [
@@ -238,9 +251,10 @@ export const categorizedExperiences = {
       companyId: "smart-home",
       company: "Smart Home Automation System",
       location: "Semarang, ID",
+      companyUrl: "#smart-home",
       roles: [
         {
-          id: 12,
+          id: 'smart-home-iot',
           role: "IoT Developer",
           period: "Nov 2023 – Jan 2024",
           description: [
@@ -255,32 +269,3 @@ export const categorizedExperiences = {
     },
   ],
 }
-
-// Example of how to add multiple roles to the same company:
-// Just add this to the data structure above to test multiple roles
-/*
-// In the work array:
-{
-  companyId: "example-company-with-multiple-roles",
-  company: "Example Company",
-  location: "City, Country",
-  roles: [
-    {
-      id: 101,
-      role: "Senior Developer",
-      period: "Jan 2023 - Present",
-      description: ["Description 1", "Description 2"],
-      tags: ["Tag1", "Tag2"],
-    },
-    {
-      id: 102,
-      role: "Junior Developer",
-      period: "Jan 2021 - Dec 2022",
-      description: ["Description 1", "Description 2"],
-      tags: ["Tag1", "Tag2"],
-    }
-  ],
-  category: "work",
-}
-*/
-
