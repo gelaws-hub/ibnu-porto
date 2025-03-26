@@ -12,12 +12,13 @@ import ThemeToggle from "./components/ThemeToggle"
 import AnimatedBackground from "./components/AnimatedBackground"
 import FloatingShapes from "./components/FloatingShapes"
 
+const defaultTheme = "dark"
+
 function App() {
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") || "light"
+      return localStorage.getItem("theme") || defaultTheme
     }
-    return "light"
   })
 
   useEffect(() => {
