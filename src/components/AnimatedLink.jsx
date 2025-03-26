@@ -33,7 +33,7 @@ const AnimatedLink = React.forwardRef(
           // Position the text above the underline
           "relative z-10",
           // Underline styling
-          "after:absolute after:bottom-0 after:left-0 after:z-0 after:h-[var(--underline-height)] after:w-0 after:bg-[var(--underline-color,currentColor)] after:transition-all after:duration-[var(--animation-duration)] after:ease-in-out after:content-['']",
+          "after:absolute after:bottom-0 after:left-0 after:z-0 after:h-[var(--underline-height)] after:w-0 after:bg-[var(--underline-color,currentColor)] after:transition-all after:duration-&lsqb;var(--animation-duration)&rsqb; after:ease-in-out after:content-['']",
           // Show full underline on hover
           `${group ? "group-hover:after:w-full" : "hover:after:w-full"}`,
           // If alwaysShowUnderline is true, show the underline at full width by default
