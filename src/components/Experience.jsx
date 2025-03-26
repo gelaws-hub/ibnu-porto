@@ -1,8 +1,18 @@
-import { useState, useEffect } from "react"
-import { Calendar, MapPin, ChevronDown, ChevronUp, Minimize2, Maximize2, Briefcase, Users, Code } from "react-feather"
+import { useState, useEffect } from "react";
+import {
+  Calendar,
+  MapPin,
+  ChevronDown,
+  ChevronUp,
+  Minimize2,
+  Maximize2,
+  Briefcase,
+  Users,
+  Code,
+} from "react-feather";
 
-import { categorizedExperiences } from "./data/experiences"
-import { AnimatedLink } from "./AnimatedLink"
+import { categorizedExperiences } from "./data/experiences";
+import { AnimatedLink } from "./AnimatedLink";
 
 // Flatten all experiences for when "All" category is selected
 // Replace the existing allExperiences definition with this:
@@ -10,15 +20,12 @@ const allExperiences = [
   ...categorizedExperiences.work,
   ...categorizedExperiences.organization,
   ...categorizedExperiences.project,
-]
+];
 
 // Section Header Component
 const SectionHeader = () => {
-
   return (
-    <div
-      className={`text-center mb-12 transition-all duration-400 transform`}
-    >
+    <div className={`text-center mb-12 transition-all duration-400 transform`}>
       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
         <span className="relative inline-block">
           <span className="absolute inset-x-0 bottom-0 h-3 bg-teal-200 dark:bg-teal-800 transform -skew-x-12"></span>
@@ -26,15 +33,15 @@ const SectionHeader = () => {
         </span>
       </h2>
       <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-        My professional journey and the valuable experiences I've gained along the way.
+        My professional journey and the valuable experiences I've gained along
+        the way.
       </p>
     </div>
-  )
-}
+  );
+};
 
 // Category Tabs Component
 const CategoryTabs = ({ categories, activeCategory, setActiveCategory }) => {
-
   return (
     <div
       className={`flex flex-wrap justify-center gap-2 mb-6 transition-all duration-300`}
@@ -54,22 +61,25 @@ const CategoryTabs = ({ categories, activeCategory, setActiveCategory }) => {
         </button>
       ))}
     </div>
-  )
-}
+  );
+};
 
 // Experience Controls Component
 const ExperienceControls = ({ isAllExpanded, toggleAll }) => {
-
   return (
     <div
       className={`flex justify-end mb-2 transition-all duration-400 delay-200 transform`}
     >
-      <div onClick={toggleAll} className="px-4 rounded-lg flex gap-4 items-center cursor-pointer">
+      <div
+        onClick={toggleAll}
+        className="px-4 rounded-lg flex gap-4 items-center cursor-pointer"
+      >
         <span className="text-sm font-medium text-gray-600 dark:text-gray-400 transition-all duration-300 opacity-100">
           {isAllExpanded ? "Collapse All" : "Expand All"}{" "}
         </span>
 
         <button
+          aria-label="Toggle expand all"
           onClick={toggleAll}
           className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
             isAllExpanded
@@ -81,24 +91,31 @@ const ExperienceControls = ({ isAllExpanded, toggleAll }) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const ExperienceCard = ({ company, toggleExpand, expandedIds, index }) => {
-  const hasMultipleRoles = company.roles.length > 1
+  const hasMultipleRoles = company.roles.length > 1;
 
   const isEven = index % 2 === 0;
 
   return (
     <div
-      className={`relative mb-8 ${isEven ? "md:mr-8 md:ml-auto" : "md:pl-8 md:ml-1/2"} transition-all duration-400 transform ease-in group`}
+      className={`relative mb-8 ${
+        isEven ? "md:mr-8 md:ml-auto" : "md:pl-8 md:ml-1/2"
+      } transition-all duration-400 transform ease-in group`}
     >
       <div className="hidden md:block absolute top-6 -left-3 md:left-auto md:right-auto md:-translate-x-1/2 w-6 h-6 rounded-full border-4 border-white dark:border-gray-900 bg-teal-500"></div>
 
       <div className="ml-8 md:ml-0 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm p-6 rounded-lg shadow-md border border-gray-200/50 dark:border-gray-700/50 hover:shadow-lg transition-all duration-300">
         {/* Company Header */}
         <div className="mb-4">
-          <AnimatedLink href={company.companyUrl} target="_blank" group="group" className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+          <AnimatedLink
+            href={company.companyUrl}
+            target="_blank"
+            group="group"
+            className="text-xl font-bold text-gray-900 dark:text-white mb-2"
+          >
             {company.company}
             {/* Category Badge */}
             <span
@@ -106,11 +123,12 @@ const ExperienceCard = ({ company, toggleExpand, expandedIds, index }) => {
                 company.category === "work"
                   ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
                   : company.category === "organization"
-                    ? "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
-                    : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
+                  ? "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
+                  : "bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300"
               }`}
             >
-              {company.category.charAt(0).toUpperCase() + company.category.slice(1)}
+              {company.category.charAt(0).toUpperCase() +
+                company.category.slice(1)}
             </span>
           </AnimatedLink>
 
@@ -128,11 +146,15 @@ const ExperienceCard = ({ company, toggleExpand, expandedIds, index }) => {
             <div
               key={role.id}
               className={`${
-                hasMultipleRoles && roleIndex > 0 ? "pt-4 border-t border-gray-200 dark:border-gray-700" : ""
+                hasMultipleRoles && roleIndex > 0
+                  ? "pt-4 border-t border-gray-200 dark:border-gray-700"
+                  : ""
               }`}
             >
               <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                <h4 className="text-lg font-medium text-gray-800 dark:text-gray-200">{role.role}</h4>
+                <h3 className="text-lg font-medium text-gray-800 dark:text-gray-200">
+                  {role.role}
+                </h3>
 
                 <button
                   onClick={() => toggleExpand(role.id)}
@@ -164,8 +186,12 @@ const ExperienceCard = ({ company, toggleExpand, expandedIds, index }) => {
                   <ul className="space-y-2">
                     {role.description.map((item, i) => (
                       <li key={i} className="flex">
-                        <span className="mr-2 text-teal-500 dark:text-teal-400">•</span>
-                        <span className="text-gray-600 dark:text-gray-400">{item}</span>
+                        <span className="mr-2 text-teal-500 dark:text-teal-400">
+                          •
+                        </span>
+                        <span className="text-gray-600 dark:text-gray-400">
+                          {item}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -187,27 +213,25 @@ const ExperienceCard = ({ company, toggleExpand, expandedIds, index }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // Empty State Component
 const EmptyState = () => {
-
   return (
     <div
       className={`text-center py-12 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-lg transition-all duration-400 transform`}
     >
-      <p className="text-gray-600 dark:text-gray-400">No experiences found in this category.</p>
+      <p className="text-gray-600 dark:text-gray-400">
+        No experiences found in this category.
+      </p>
     </div>
-  )
-}
+  );
+};
 
 const ExperienceTimeline = ({ companies, toggleExpand, expandedIds }) => {
-
   return (
-    <div
-      className={`relative transition-all duration-400 delay-300 transform`}
-    >
+    <div className={`relative transition-all duration-400 delay-300 transform`}>
       <div className="absolute left-4 md:left-1/2 h-full w-0.5 bg-gray-200 dark:bg-gray-700 transform md:-translate-x-1/2"></div>
 
       {companies.length > 0 ? (
@@ -224,41 +248,52 @@ const ExperienceTimeline = ({ companies, toggleExpand, expandedIds }) => {
         <EmptyState />
       )}
     </div>
-  )
-}
+  );
+};
 
 const Experience = () => {
-  const [activeCategory, setActiveCategory] = useState("all")
-  const [expandedIds, setExpandedIds] = useState([])
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [expandedIds, setExpandedIds] = useState([]);
 
   // Initialize expanded IDs with all role IDs
   useEffect(() => {
-    const allRoleIds = allExperiences.flatMap((company) => company.roles.map((role) => role.id))
-    setExpandedIds(allRoleIds)
-  }, [])
+    const allRoleIds = allExperiences.flatMap((company) =>
+      company.roles.map((role) => role.id)
+    );
+    setExpandedIds(allRoleIds);
+  }, []);
 
   // Get experiences based on active category
-  const companies = activeCategory === "all" ? allExperiences : categorizedExperiences[activeCategory]
+  const companies =
+    activeCategory === "all"
+      ? allExperiences
+      : categorizedExperiences[activeCategory];
 
   // Get all role IDs from the current companies
-  const allRoleIds = companies.flatMap((company) => company.roles.map((role) => role.id))
+  const allRoleIds = companies.flatMap((company) =>
+    company.roles.map((role) => role.id)
+  );
 
   const toggleExpand = (id) => {
-    setExpandedIds(expandedIds.includes(id) ? expandedIds.filter((item) => item !== id) : [...expandedIds, id])
-  }
+    setExpandedIds(
+      expandedIds.includes(id)
+        ? expandedIds.filter((item) => item !== id)
+        : [...expandedIds, id]
+    );
+  };
 
   const toggleAll = () => {
-    setExpandedIds(expandedIds.length === allRoleIds.length ? [] : allRoleIds)
-  }
+    setExpandedIds(expandedIds.length === allRoleIds.length ? [] : allRoleIds);
+  };
 
-  const isAllExpanded = expandedIds.length === allRoleIds.length
+  const isAllExpanded = expandedIds.length === allRoleIds.length;
 
   const categories = [
     { id: "all", name: "All Experiences", icon: <Calendar size={18} /> },
     { id: "work", name: "Work", icon: <Briefcase size={18} /> },
     { id: "organization", name: "Organization", icon: <Users size={18} /> },
     { id: "project", name: "Project", icon: <Code size={18} /> },
-  ]
+  ];
 
   return (
     <section id="experience" className="py-20 relative">
@@ -270,17 +305,27 @@ const Experience = () => {
 
       {/* Category Tabs and Controls */}
       <div className="max-w-4xl mx-auto mb-8">
-        <CategoryTabs categories={categories} activeCategory={activeCategory} setActiveCategory={setActiveCategory} />
+        <CategoryTabs
+          categories={categories}
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+        />
 
-        <ExperienceControls isAllExpanded={isAllExpanded} toggleAll={toggleAll} />
+        <ExperienceControls
+          isAllExpanded={isAllExpanded}
+          toggleAll={toggleAll}
+        />
       </div>
 
       <div className="max-w-4xl mx-auto">
-        <ExperienceTimeline companies={companies} toggleExpand={toggleExpand} expandedIds={expandedIds} />
+        <ExperienceTimeline
+          companies={companies}
+          toggleExpand={toggleExpand}
+          expandedIds={expandedIds}
+        />
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Experience
-
+export default Experience;

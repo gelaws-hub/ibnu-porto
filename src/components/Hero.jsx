@@ -30,7 +30,7 @@ const Hero = () => {
   }, [typedText]);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center pt-16">
+    <section className="relative min-h-screen flex flex-col justify-center pt-16">
       <div className="grid md:grid-cols-2 gap-8 items-center">
         <div className="order-2 md:order-1">
           <div className="mb-2 inline-block">
@@ -56,7 +56,7 @@ const Hero = () => {
           <div className="flex flex-wrap gap-4 mb-8">
             <a
               href="#contact"
-              className="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition-colors duration-300 flex items-center"
+              className="px-6 py-3 bg-teal-700 hover:bg-teal-800 text-white rounded-lg transition-colors duration-300 flex items-center"
             >
               <Mail size={18} className="mr-2" />
               Contact Me
@@ -64,7 +64,7 @@ const Hero = () => {
             <a
               href="/CV_Muhamad-Ibnu-Fadhil.pdf"
               target="_blank"
-              className="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white rounded-lg transition-colors duration-300 flex items-center"
+              className="px-6 py-3 bg-teal-700 hover:bg-teal-800 text-white rounded-lg transition-colors duration-300 flex items-center"
             >
              <DownloadCloud size={18} className="mr-2" /> Download CV 
             </a>
@@ -146,7 +146,7 @@ const Hero = () => {
       </div>
 
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
-        <a href="#projects" className="text-gray-400 dark:text-gray-500">
+        <a aria-label="Go to projects" href="#projects" className="text-gray-400 dark:text-gray-500">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

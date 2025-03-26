@@ -37,11 +37,11 @@ const Education = () => {
                 >
                   Universitas Diponegoro
                 </AnimatedLink>
-                <h4 className="text-lg font-medium text-teal-600 dark:text-teal-400 mb-4">
+                <h3 className="text-lg font-medium text-teal-600 dark:text-teal-400 mb-4">
                   <AnimatedLink href="https://tekkom.ft.undip.ac.id">
                     Bachelor of Engineering in Computer Engineering
                   </AnimatedLink>
-                </h4>
+                </h3>
 
                 <div className="flex flex-wrap items-center text-gray-600 dark:text-gray-400 mb-6">
                   <div className="flex items-center mr-6 mb-2">
@@ -97,9 +97,9 @@ const Education = () => {
 
                 <div className="relative pt-6">
                   <div className="absolute top-0 left-0 right-0 h-px bg-gray-200 dark:bg-gray-700"></div>
-                  <h5 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
+                  <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-3">
                     Relevant Coursework
-                  </h5>
+                  </h4>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
                     <div className="px-3 py-2 bg-gray-100 dark:bg-gray-700 rounded-md text-sm text-gray-700 dark:text-gray-300">
                       Microprocessor Engineering
