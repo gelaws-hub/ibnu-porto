@@ -9,7 +9,12 @@ import {
   Briefcase,
   Users,
   Code,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "react-feather";
+
+import ReactDOM from "react-dom";
 
 import { categorizedExperiences } from "./data/experiences";
 import { AnimatedLink } from "./AnimatedLink";
@@ -208,6 +213,7 @@ const ExperienceCard = ({ company, toggleExpand, expandedIds, index }) => {
                   </div>
                 </div>
               )}
+              {role.images && role.images.length > 0 && <ImageGallery images={role.images} altImage={role.role} />}
             </div>
           ))}
         </div>
@@ -327,5 +333,127 @@ const Experience = () => {
     </section>
   );
 };
+
+const ImageGallery = ({ images, altImage }) => {
+  const [selectedImage, setSelectedImage] = useState(null)
+
+  if (!images || images.length === 0) return null
+
+  const handleImageClick = (index) => {
+    setSelectedImage(index)
+  }
+
+  const closeModal = () => {
+    setSelectedImage(null)
+  }
+
+  const showPrevImage = (e) => {
+    e?.stopPropagation()
+    setSelectedImage((prev) => (prev === 0 ? images.length - 1 : prev - 1))
+  }
+
+  const showNextImage = (e) => {
+    e?.stopPropagation()
+    setSelectedImage((prev) => (prev === images.length - 1 ? 0 : prev + 1))
+  }
+
+  // Keyboard navigation
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedImage === null) return
+
+      if (e.key === "ArrowLeft") showPrevImage()
+      if (e.key === "ArrowRight") showNextImage()
+      if (e.key === "Escape") closeModal()
+    }
+
+    window.addEventListener("keydown", handleKeyDown)
+    return () => window.removeEventListener("keydown", handleKeyDown)
+  }, [selectedImage])
+
+  const modal = selectedImage !== null && (
+    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={closeModal}>
+      <div className="relative max-w-4xl" onClick={(e) => e.stopPropagation()}>
+        <button
+          className="absolute top-4 right-4 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors z-10"
+          onClick={closeModal}
+        >
+          <X size={20} />
+        </button>
+
+        <button
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors z-10"
+          onClick={showPrevImage}
+        >
+          <ChevronLeft size={24} />
+        </button>
+
+        <button
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors z-10"
+          onClick={showNextImage}
+        >
+          <ChevronRight size={24} />
+        </button>
+
+        <img
+          src={images[selectedImage] || "/placeholder.svg"}
+          alt={altImage || "Experience"}
+          className="w-full max-h-[80vh] object-contain"
+        />
+
+        <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
+          {images.map((_, index) => (
+            <button
+              key={index}
+              className={`w-2 h-2 rounded-full ${
+                selectedImage === index ? "bg-white" : "bg-white/50"
+              } transition-colors`}
+              onClick={() => setSelectedImage(index)}
+              aria-label={`${altImage} ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="mt-4 mb-4">
+      {images.length === 1 ? (
+        <div className="relative overflow-hidden rounded-lg cursor-pointer" onClick={() => handleImageClick(0)}>
+          <img
+            src={images[0] || "/placeholder.svg"}
+            alt="Experience"
+            className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
+          />
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+          {images.slice(0, 4).map((image, index) => (
+            <div
+              key={index}
+              className="relative overflow-hidden rounded-lg cursor-pointer"
+              onClick={() => handleImageClick(index)}
+            >
+              <img
+                src={image || "/placeholder.svg"}
+                alt={`Experience ${index + 1}`}
+                className="w-full h-24 object-cover hover:scale-105 transition-transform duration-300 rounded-md"
+              />
+              {index === 3 && images.length > 4 && (
+                <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                  <span className="text-white font-medium">+{images.length - 4} more</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+
+      {typeof window !== "undefined" && ReactDOM.createPortal(modal, document.body)}
+    </div>
+  )
+}
 
 export default Experience;

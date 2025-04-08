@@ -13,8 +13,10 @@ export const categorizedExperiences = {
           description: [
             "Coordinated and supervised 8 practicum assistants in delivering high-quality learning experiences.",
             "Led practicum on automation systems and control theory using Simulink and MATLAB.",
-            "Taught 145+ students on IoT integration with Arduino Nano 33 IoT for real-time control.",
-            "Conducted labs with robotic devices, including a controlled rover, drawing robot, and self-balancing bike.",
+          ],
+          images: [
+            "/experiences/tko/tko 1.jpg",
+            "/experiences/tko/tko 2.jpg",
           ],
           tags: ["Teaching", "Control Systems", "Automation", "IoT", "Simulink", "MATLAB"],
         },
@@ -26,6 +28,25 @@ export const categorizedExperiences = {
             "Led hands-on practicums for 24 students per session (total 7 sessions per module), ensuring a structured and engaging learning environment.",
             "Facilitated troubleshooting and debugging sessions.",
             "Assessed and supported student progress through individualized guidance.",
+          ],
+          images: [
+            "/experiences/tma/tma 1.png",
+            "/experiences/tma/tma 2.png",
+          ],
+          tags: ["Teaching", "Microprocessor", "Embedded Systems", "Circuit Design"],
+        },
+        {
+          id: 'mulmed',
+          role: "Practicum Assistant for Multimedia",
+          period: "Feb 2024 – Apr 2024",
+          description: [
+            "Facilitated hands-on sessions in 3D modeling, texturing, and animation using Blender 3D.",
+            "Assisted students in creating 3D assets and animations for their projects.",
+            "Taught students 3D content creation and game development using Unity 3D.",
+          ],
+          images: [
+            "/experiences/mulmed/mulmed 1.jpeg",
+            "/experiences/mulmed/mulmed 2.jpeg",
           ],
           tags: ["Teaching", "Microprocessor", "Embedded Systems", "Circuit Design"],
         },
@@ -48,6 +69,10 @@ export const categorizedExperiences = {
             "Created RESTful APIs to facilitate seamless communication between frontend and backend systems.",
           ],
           tags: ["Full Stack", "React.js", "Express.js", "MySQL", "RESTful API"],
+          images: [
+            "/experiences/mjtek/mjtek.jpg",
+            "/projects/mjteknologi.jpg"
+          ]
         },
       ],
       category: "work",
@@ -70,6 +95,13 @@ export const categorizedExperiences = {
             "Graduated with distinction Top 10% Students in Cloud Computing with 96.20/100 average score.",
           ],
           tags: ["Cloud Computing", "Backend Development", "Express.js", "GCP", "Prisma ORM"],
+          images: [
+            "/experiences/bangkit/Bangkit Certificate.jpg",
+            "/experiences/bangkit/Bangkit Transcrip.jpg",
+            "/experiences/bangkit/weekly consultation.jpg",
+            "/experiences/bangkit/learning 1.jpg",
+            "/experiences/bangkit/learning 2.jpg",
+          ],
         },
       ],
       category: "work",
@@ -89,32 +121,15 @@ export const categorizedExperiences = {
             "Achieved 80+ positive client satisfaction reviews, highlighting exceptional service and design quality.",
           ],
           tags: ["3D Design", "Freelancing", "Product Design"],
+          images: [
+            "/experiences/fiverr/fiverr.jpg",
+          ]
         },
       ],
       category: "work",
     },
   ],
   organization: [
-    {
-      companyId: "computer-engineering-research-club",
-      company: "Computer Engineering Research Club",
-      location: "Semarang, ID",
-      companyUrl: "https://www.linkedin.com/company/cerc-undip",
-      roles: [
-        {
-          id: 'cerc-mentor',
-          role: "Multimedia Mentor",
-          period: "Apr 2023 – Oct 2023",
-          description: [
-            "Guest Speaker at School of Research 2023 event, presenting on 3D modeling and animation.",
-            "Introduced club members to the world of 3D, exploring its possibilities and applications.",
-            "Led hands-on sessions in 3D modeling, texturing, and animation using Blender 3D.",
-          ],
-          tags: ["3D Modeling", "Blender", "Mentoring"],
-        },
-      ],
-      category: "organization",
-    },
     {
       companyId: "computer-engineering-student-association",
       company: "Computer Engineering Student Association",
@@ -131,6 +146,35 @@ export const categorizedExperiences = {
             "Organized and managed the School of Research 2022 event.",
           ],
           tags: ["Research", "Event Management", "Student Organization"],
+          images:[
+            "/experiences/ristek/ristek 1.jpeg",
+            "/experiences/ristek/ristek 2.jpeg",
+            "/experiences/ristek/ristek 3.jpeg",
+            "/experiences/ristek/ristek 4.jpeg",
+          ]
+        },
+      ],
+      category: "organization",
+    },
+    {
+      companyId: "computer-engineering-research-club",
+      company: "Computer Engineering Research Club",
+      location: "Semarang, ID",
+      companyUrl: "https://www.linkedin.com/company/cerc-undip",
+      roles: [
+        {
+          id: 'cerc-mentor',
+          role: "Multimedia Mentor",
+          period: "Apr 2023 – Oct 2023",
+          description: [
+            "Guest Speaker at School of Research 2023 event, presenting on 3D modeling and animation.",
+            "Introduced club members to the world of 3D, exploring its possibilities and applications.",
+            "Led hands-on sessions in 3D modeling, texturing, and animation using Blender 3D.",
+          ],
+          tags: ["3D Modeling", "Blender", "Mentoring"],
+          images: [
+            "/experiences/cerc/cerc.jpeg",
+          ]
         },
       ],
       category: "organization",
@@ -151,6 +195,9 @@ export const categorizedExperiences = {
             "Ensured the success of the event by collaborating with other divisions.",
           ],
           tags: ["Research", "Event Management", "Student Organization"],
+          images: [
+            "/experiences/syiar/syiar.jpg",
+          ]
         },
         {
           id: 'almuharrik-syiar-member',
@@ -161,6 +208,8 @@ export const categorizedExperiences = {
             "Contribute to Kajian Akbar event",
           ],
           tags: ["Research", "Event Management", "Student Organization"],
+          images: [
+          ]
         },
       ],
       category: "organization",
