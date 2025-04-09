@@ -7,7 +7,7 @@ export const categorizedExperiences = {
       location: "Semarang, ID",
       roles: [
         {
-          id: 'coor-tko',
+          id: "coor-tko",
           role: "Coordinator Practicum Assistant for Control and Automation Engineering",
           period: "Aug 2024 – Mar 2025",
           description: [
@@ -15,13 +15,26 @@ export const categorizedExperiences = {
             "Led practicum on automation systems and control theory using Simulink and MATLAB.",
           ],
           images: [
-            "/experiences/tko/tko 1.jpg",
-            "/experiences/tko/tko 2.jpg",
+            {
+              src: "/experiences/tko/tko 1.jpg",
+              optimized: "/experiences/tko/optimized-tko 1.jpg",
+            },
+            {
+              src: "/experiences/tko/tko 2.jpg",
+              optimized: "/experiences/tko/optimized-tko 2.jpg",
+            },
           ],
-          tags: ["Teaching", "Control Systems", "Automation", "IoT", "Simulink", "MATLAB"],
+          tags: [
+            "Teaching",
+            "Control Systems",
+            "Automation",
+            "IoT",
+            "Simulink",
+            "MATLAB",
+          ],
         },
         {
-          id: 'tma',
+          id: "tma",
           role: "Practicum Assistant for Micropocessor Engineering and Interfacing",
           period: "Mar 2024 – Jul 2024",
           description: [
@@ -30,13 +43,24 @@ export const categorizedExperiences = {
             "Assessed and supported student progress through individualized guidance.",
           ],
           images: [
-            "/experiences/tma/tma 1.png",
-            "/experiences/tma/tma 2.png",
+            {
+              src: "/experiences/tma/tma 1.png",
+              optimized: "/experiences/tma/optimized-tma 1.png",
+            },
+            {
+              src: "/experiences/tma/tma 2.png",
+              optimized: "/experiences/tma/optimized-tma 2.png",
+            },
           ],
-          tags: ["Teaching", "Microprocessor", "Embedded Systems", "Circuit Design"],
+          tags: [
+            "Teaching",
+            "Microprocessor",
+            "Embedded Systems",
+            "Circuit Design",
+          ],
         },
         {
-          id: 'mulmed',
+          id: "mulmed",
           role: "Practicum Assistant for Multimedia",
           period: "Feb 2024 – Apr 2024",
           description: [
@@ -45,10 +69,21 @@ export const categorizedExperiences = {
             "Taught students 3D content creation and game development using Unity 3D.",
           ],
           images: [
-            "/experiences/mulmed/mulmed 1.jpeg",
-            "/experiences/mulmed/mulmed 2.jpeg",
+            {
+              src: "/experiences/mulmed/mulmed 1.jpeg",
+              optimized: "/experiences/mulmed/optimized-mulmed 1.jpeg",
+            },
+            {
+              src: "/experiences/mulmed/mulmed 2.jpeg",
+              optimized: "/experiences/mulmed/optimized-mulmed 2.jpeg",
+            },
           ],
-          tags: ["Teaching", "Microprocessor", "Embedded Systems", "Circuit Design"],
+          tags: [
+            "Teaching",
+            "Microprocessor",
+            "Embedded Systems",
+            "Circuit Design",
+          ],
         },
       ],
       category: "work",
@@ -60,7 +95,7 @@ export const categorizedExperiences = {
       location: "Semarang, ID",
       roles: [
         {
-          id: 'mj-teknologi',
+          id: "mj-teknologi",
           role: "Full Stack Developer – Final Project",
           period: "Aug 2024 – Jan 2025",
           description: [
@@ -68,11 +103,23 @@ export const categorizedExperiences = {
             "Designed and optimized database architecture, improving inventory and transaction efficiency by roughly 25%.",
             "Created RESTful APIs to facilitate seamless communication between frontend and backend systems.",
           ],
-          tags: ["Full Stack", "React.js", "Express.js", "MySQL", "RESTful API"],
+          tags: [
+            "Full Stack",
+            "React.js",
+            "Express.js",
+            "MySQL",
+            "RESTful API",
+          ],
           images: [
-            "/experiences/mjtek/mjtek.jpg",
-            "/projects/mjteknologi.jpg"
-          ]
+            {
+              src: "/experiences/mjtek/mjtek.jpg",
+              optimized: "/experiences/mjtek/optimized-mjtek.jpg",
+            },
+            {
+              src: "/experiences/mjtek/mjteknologi.jpg",
+              optimized: "/experiences/mjtek/optimized-mjteknologi.jpg",
+            },
+          ],
         },
       ],
       category: "work",
@@ -84,7 +131,7 @@ export const categorizedExperiences = {
       location: "Bandung, ID",
       roles: [
         {
-          id: 'bangkit-cc',
+          id: "bangkit-cc",
           role: "Cloud Computing Student & Backend Developer",
           period: "Sep 2024 – Dec 2024",
           description: [
@@ -94,13 +141,34 @@ export const categorizedExperiences = {
             "Recognized as Top 1,000 Most Active Students and Top 5 Best Presenters in English ILT (Instructor Led Training) Activity Class.",
             "Graduated with distinction Top 10% Students in Cloud Computing with 96.20/100 average score.",
           ],
-          tags: ["Cloud Computing", "Backend Development", "Express.js", "GCP", "Prisma ORM"],
+          tags: [
+            "Cloud Computing",
+            "Backend Development",
+            "Express.js",
+            "GCP",
+            "Prisma ORM",
+          ],
           images: [
-            "/experiences/bangkit/Bangkit Certificate.jpg",
-            "/experiences/bangkit/Bangkit Transcrip.jpg",
-            "/experiences/bangkit/weekly consultation.jpg",
-            "/experiences/bangkit/learning 1.jpg",
-            "/experiences/bangkit/learning 2.jpg",
+            {
+              src: "/experiences/bangkit/Bangkit Certificate.jpg",
+              optimized: "/experiences/bangkit/optimized-Bangkit Certificate.jpg",
+            },
+            {
+              src: "/experiences/bangkit/Bangkit Transcrip.jpg",
+              optimized: "/experiences/bangkit/optimized-Bangkit Transcrip.jpg",
+            },
+            {
+              src: "/experiences/bangkit/weekly consultation.jpg",
+              optimized: "/experiences/bangkit/optimized-weekly consultation.jpg",
+            },
+            {
+              src: "/experiences/bangkit/learning 1.jpg",
+              optimized: "/experiences/bangkit/optimized-learning 1.jpg",
+            },
+            {
+              src: "/experiences/bangkit/learning 2.jpg",
+              optimized: "/experiences/bangkit/optimized-learning 2.jpg",
+            },
           ],
         },
       ],
@@ -113,7 +181,7 @@ export const categorizedExperiences = {
       companyUrl: "https://www.fiverr.com/vid_designer",
       roles: [
         {
-          id: 'fiverr-3d',
+          id: "fiverr-3d",
           role: "Freelance 3D Product Designer",
           period: "Sep 2020 – Sep 2024",
           description: [
@@ -122,8 +190,11 @@ export const categorizedExperiences = {
           ],
           tags: ["3D Design", "Freelancing", "Product Design"],
           images: [
-            "/experiences/fiverr/fiverr.jpg",
-          ]
+            {
+              src: "/experiences/fiverr/fiverr.jpg",
+              optimized: "/experiences/fiverr/optimized-fiverr.jpg",
+            },
+          ],
         },
       ],
       category: "work",
@@ -137,7 +208,7 @@ export const categorizedExperiences = {
       companyUrl: "https://www.instagram.com/himaskomundip",
       roles: [
         {
-          id: 'himaskom-research',
+          id: "himaskom-research",
           role: "Research Staff",
           period: "Sep 2022 - Dec 2023",
           description: [
@@ -146,12 +217,24 @@ export const categorizedExperiences = {
             "Organized and managed the School of Research 2022 event.",
           ],
           tags: ["Research", "Event Management", "Student Organization"],
-          images:[
-            "/experiences/ristek/ristek 1.jpeg",
-            "/experiences/ristek/ristek 2.jpeg",
-            "/experiences/ristek/ristek 3.jpeg",
-            "/experiences/ristek/ristek 4.jpeg",
-          ]
+          images: [
+            {
+              src: "/experiences/ristek/ristek 1.jpeg",
+              optimized: "/experiences/ristek/optimized-ristek 1.jpeg",
+            },
+            {
+              src: "/experiences/ristek/ristek 2.jpeg",
+              optimized: "/experiences/ristek/optimized-ristek 2.jpeg",
+            },
+            {
+              src: "/experiences/ristek/ristek 3.jpeg",
+              optimized: "/experiences/ristek/optimized-ristek 3.jpeg",
+            },
+            {
+              src: "/experiences/ristek/ristek 4.jpeg",
+              optimized: "/experiences/ristek/optimized-ristek 4.jpeg",
+            },
+          ],
         },
       ],
       category: "organization",
@@ -163,7 +246,7 @@ export const categorizedExperiences = {
       companyUrl: "https://www.linkedin.com/company/cerc-undip",
       roles: [
         {
-          id: 'cerc-mentor',
+          id: "cerc-mentor",
           role: "Multimedia Mentor",
           period: "Apr 2023 – Oct 2023",
           description: [
@@ -173,8 +256,11 @@ export const categorizedExperiences = {
           ],
           tags: ["3D Modeling", "Blender", "Mentoring"],
           images: [
-            "/experiences/cerc/cerc.jpeg",
-          ]
+            {
+              src: "/experiences/cerc/cerc.jpeg",
+              optimized: "/experiences/cerc/optimized-cerc.jpeg",
+            }
+          ],
         },
       ],
       category: "organization",
@@ -186,7 +272,7 @@ export const categorizedExperiences = {
       companyUrl: "https://www.instagram.com/almuharrik_siskom",
       roles: [
         {
-          id: 'almuharrik-syiar-head',
+          id: "almuharrik-syiar-head",
           role: "Head of Syiar division",
           period: "Aug 2023 - Mar 2024",
           description: [
@@ -196,11 +282,14 @@ export const categorizedExperiences = {
           ],
           tags: ["Research", "Event Management", "Student Organization"],
           images: [
-            "/experiences/syiar/syiar.jpg",
-          ]
+            {
+              src: "/experiences/syiar/syiar.jpg",
+              optimized: "/experiences/syiar/optimized-syiar.jpg",
+            },
+          ],
         },
         {
-          id: 'almuharrik-syiar-member',
+          id: "almuharrik-syiar-member",
           role: "Member of Syiar division",
           period: "Aug 2023 - Mar 2024",
           description: [
@@ -208,8 +297,7 @@ export const categorizedExperiences = {
             "Contribute to Kajian Akbar event",
           ],
           tags: ["Research", "Event Management", "Student Organization"],
-          images: [
-          ]
+          images: [],
         },
       ],
       category: "organization",
@@ -221,7 +309,7 @@ export const categorizedExperiences = {
       companyUrl: "https://www.instagram.com/smptq_pangerandiponegoro",
       roles: [
         {
-          id: 'smptq-teacher',
+          id: "smptq-teacher",
           role: "Community Service Participant",
           period: "Feb 2024",
           description: [
@@ -243,7 +331,7 @@ export const categorizedExperiences = {
       companyUrl: "https://gemastik.kemdikbud.go.id/",
       roles: [
         {
-          id: 'gemastik-game',
+          id: "gemastik-game",
           role: "Game Developer",
           period: "Aug 2022 – Nov 2022",
           description: [
@@ -263,7 +351,7 @@ export const categorizedExperiences = {
       companyUrl: "https://diskominfo.semarangkota.go.id",
       roles: [
         {
-          id: 'diskominfo-intern',
+          id: "diskominfo-intern",
           role: "Project Manager and UI/UX Designer Internship",
           period: "Sep 2023 – Nov 2023",
           description: [
@@ -271,7 +359,12 @@ export const categorizedExperiences = {
             "Led a team of 5 developer interns to build the application using Express.js and React.js.",
             "Delivered a scalable application using React.js and Express.js, enhancing process efficiency by 30%.",
           ],
-          tags: ["Project Management", "UI/UX Design", "React.js", "Express.js"],
+          tags: [
+            "Project Management",
+            "UI/UX Design",
+            "React.js",
+            "Express.js",
+          ],
         },
       ],
       category: "work",
@@ -283,7 +376,7 @@ export const categorizedExperiences = {
       companyUrl: "https://ibnu-fadhil.my.id",
       roles: [
         {
-          id: 'portfolio-website',
+          id: "portfolio-website",
           role: "Fullstack Developer",
           period: "Jan 2024 – Feb 2024",
           description: [
@@ -303,7 +396,7 @@ export const categorizedExperiences = {
       companyUrl: "#smart-home",
       roles: [
         {
-          id: 'smart-home-iot',
+          id: "smart-home-iot",
           role: "IoT Developer",
           period: "Nov 2023 – Jan 2024",
           description: [
@@ -317,4 +410,4 @@ export const categorizedExperiences = {
       category: "project",
     },
   ],
-}
+};

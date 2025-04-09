@@ -18,6 +18,8 @@ import ReactDOM from "react-dom";
 
 import { categorizedExperiences } from "./data/experiences";
 import { AnimatedLink } from "./AnimatedLink";
+import { LazyLoadImage, trackWindowScroll } from "react-lazy-load-image-component";
+
 
 // Flatten all experiences for when "All" category is selected
 // Replace the existing allExperiences definition with this:
@@ -213,7 +215,9 @@ const ExperienceCard = ({ company, toggleExpand, expandedIds, index }) => {
                   </div>
                 </div>
               )}
-              {role.images && role.images.length > 0 && <ImageGallery images={role.images} altImage={role.role} />}
+              {role.images && role.images.length > 0 && (
+                <ImageGallery images={role.images} altImage={role.role} />
+              )}
             </div>
           ))}
         </div>
@@ -330,50 +334,70 @@ const Experience = () => {
           expandedIds={expandedIds}
         />
       </div>
+      <div className="sticky bottom-2 w-full text-center animate-bounce hidden md:block">
+        <a aria-label="Go to projects" href="#education" className="text-gray-400 dark:text-gray-500 inline-block ml-auto">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 5v14M5 12l7 7 7-7" />
+          </svg>
+        </a>
+      </div>
     </section>
   );
 };
 
 const ImageGallery = ({ images, altImage }) => {
-  const [selectedImage, setSelectedImage] = useState(null)
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  if (!images || images.length === 0) return null
+  if (!images || images.length === 0) return null;
 
   const handleImageClick = (index) => {
-    setSelectedImage(index)
-  }
+    setSelectedImage(index);
+  };
 
   const closeModal = () => {
-    setSelectedImage(null)
-  }
+    setSelectedImage(null);
+  };
 
   const showPrevImage = (e) => {
-    e?.stopPropagation()
-    setSelectedImage((prev) => (prev === 0 ? images.length - 1 : prev - 1))
-  }
+    e?.stopPropagation();
+    setSelectedImage((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
 
   const showNextImage = (e) => {
-    e?.stopPropagation()
-    setSelectedImage((prev) => (prev === images.length - 1 ? 0 : prev + 1))
-  }
+    e?.stopPropagation();
+    setSelectedImage((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
 
   // Keyboard navigation
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (selectedImage === null) return
+      if (selectedImage === null) return;
 
-      if (e.key === "ArrowLeft") showPrevImage()
-      if (e.key === "ArrowRight") showNextImage()
-      if (e.key === "Escape") closeModal()
-    }
+      if (e.key === "ArrowLeft") showPrevImage();
+      if (e.key === "ArrowRight") showNextImage();
+      if (e.key === "Escape") closeModal();
+    };
 
-    window.addEventListener("keydown", handleKeyDown)
-    return () => window.removeEventListener("keydown", handleKeyDown)
-  }, [selectedImage])
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage]);
 
   const modal = selectedImage !== null && (
-    <div className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4" onClick={closeModal}>
+    <div
+      className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+      onClick={closeModal}
+    >
       <div className="relative max-w-4xl" onClick={(e) => e.stopPropagation()}>
         <button
           className="absolute top-4 right-4 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-colors z-10"
@@ -397,7 +421,7 @@ const ImageGallery = ({ images, altImage }) => {
         </button>
 
         <img
-          src={images[selectedImage] || "/placeholder.svg"}
+          src={images[selectedImage].src || "/placeholder.svg"}
           alt={altImage || "Experience"}
           className="w-full max-h-[80vh] object-contain"
         />
@@ -416,44 +440,40 @@ const ImageGallery = ({ images, altImage }) => {
         </div>
       </div>
     </div>
-  )
+  );
 
   return (
     <div className="mt-4 mb-4">
-      {images.length === 1 ? (
-        <div className="relative overflow-hidden rounded-lg cursor-pointer" onClick={() => handleImageClick(0)}>
-          <img
-            src={images[0] || "/placeholder.svg"}
-            alt="Experience"
-            className="w-full h-48 object-cover hover:scale-105 transition-transform duration-300"
-          />
-        </div>
-      ) : (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-          {images.slice(0, 4).map((image, index) => (
-            <div
-              key={index}
-              className="relative overflow-hidden rounded-lg cursor-pointer"
-              onClick={() => handleImageClick(index)}
-            >
-              <img
-                src={image || "/placeholder.svg"}
-                alt={`Experience ${index + 1}`}
-                className="w-full h-24 object-cover hover:scale-105 transition-transform duration-300 rounded-md"
-              />
-              {index === 3 && images.length > 4 && (
-                <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-                  <span className="text-white font-medium">+{images.length - 4} more</span>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+        {images.slice(0, 4).map((image, index) => (
+          <div
+            key={index}
+            className="relative overflow-hidden rounded-lg cursor-pointer"
+            onClick={() => handleImageClick(index)}
+          >
+            <LazyLoadImage
+              className="w-full h-24 object-cover hover:scale-105 transition-transform duration-300 rounded-md"
+              alt={`Experience ${index + 1}`}
+              src={image.optimized}
+              effect="opacity"
+              wrapperClassName="w-full h-24"
+            />
+            {index === 3 && images.length > 4 && (
+              <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                <span className="text-white font-medium">
+                  +{images.length - 4} more
+                </span>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
 
-      {typeof window !== "undefined" && ReactDOM.createPortal(modal, document.body)}
+      {typeof window !== "undefined" &&
+        ReactDOM.createPortal(modal, document.body)}
     </div>
-  )
-}
+  );
+};
 
-export default Experience;
+// export default Experience;
+export default trackWindowScroll(Experience);
