@@ -41,14 +41,14 @@ const Projects = () => {
     },
     {
         id: 4,
-        title: "Nippon Computer Engineering",
+        title: "Hiragana katakana Quiz",
         description:
-          "Nippon CE is an online learning platform designed for Computer Engineering students to master Japanese language skills.",
-        image: "/projects/nipponce.jpg",
-        category: "web",
-        tags: ["React.js", "PostgreSQL", "RESTful API"],
-        github: "https://github.com/gelaws-hub",
-        demo: "https://nipponce.web.app",
+          "Kana Game lets you practice your hiragana and katakana skills in a fun and engaging way. Boost your memory, speed, and reading accuracy",
+        image: "/projects/kanagame.jpg",
+        category: "game",
+        tags: ["Angular", "Firebase", "Nihongo"],
+        github: "https://github.com/gelaws-hub/kana-game",
+        demo: "https://kanagame.web.app",
       },
     {
       id: 5,
@@ -72,6 +72,17 @@ const Projects = () => {
       github: "https://github.com/gelaws-hub/ta-rplbk",
       demo: "https://ta-shape-calculator.web.app",
     },
+    // {
+    //   id: 7,
+    //   title: "Nippon Computer Engineering",
+    //   description:
+    //     "Nippon CE is an online learning platform designed for Computer Engineering students to master Japanese language skills.",
+    //   image: "/projects/nipponce.jpg",
+    //   category: "web",
+    //   tags: ["React.js", "PostgreSQL", "RESTful API"],
+    //   github: "https://github.com/gelaws-hub",
+    //   demo: "https://nipponce.web.app",
+    // },
   ]
 
   const filteredProjects = activeTab === "all" ? projects : projects.filter((project) => project.category === activeTab)
